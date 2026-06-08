@@ -26,7 +26,8 @@ export class PaymentClient {
       body: JSON.stringify({
         reference: data.booking_reference,
         amount: data.amount,
-        currency: data.currency
+        currency: data.currency,
+        return_url: data.return_url
       }),
     });
   }

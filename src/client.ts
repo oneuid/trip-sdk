@@ -2,12 +2,14 @@ import { TripExpressConfig } from './types';
 import { CartClient } from './cart';
 import { BookingClient } from './booking';
 import { PaymentClient } from './payment';
+import { ContactClient } from './contact';
 
 export class TripExpress {
   public config: TripExpressConfig;
   public cart: CartClient;
   public booking: BookingClient;
   public payment: PaymentClient;
+  public contact: ContactClient;
 
   constructor(config: TripExpressConfig) {
     this.config = {
@@ -17,6 +19,7 @@ export class TripExpress {
     this.cart = new CartClient(this);
     this.booking = new BookingClient(this);
     this.payment = new PaymentClient(this);
+    this.contact = new ContactClient(this);
   }
 
   public async request<T>(path: string, options: RequestInit = {}): Promise<T> {
@@ -27,6 +30,9 @@ export class TripExpress {
       headers.set('Authorization', `Bearer ${this.config.token}`);
     } else if (this.config.apiKey) {
       headers.set('X-API-Key', this.config.apiKey);
+    } else if (this.config.clientId && this.config.clientSecret) {
+      headers.set('X-Client-ID', this.config.clientId);
+      headers.set('X-Client-Secret', this.config.clientSecret);
     }
 
     if (!headers.has('Content-Type') && options.body) {

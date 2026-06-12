@@ -49,16 +49,27 @@ export class BookingClient {
   }
 
   async getPDF(id: string): Promise<ArrayBuffer> {
+    const headers: Record<string, string> = {};
+    if (this.client.config.token) {
+      headers['Authorization'] = `Bearer ${this.client.config.token}`;
+    } else if (this.client.config.apiKey) {
+      headers['X-API-Key'] = this.client.config.apiKey;
+    } else if (this.client.config.clientId && this.client.config.clientSecret) {
+      headers['X-Client-ID'] = this.client.config.clientId;
+      headers['X-Client-Secret'] = this.client.config.clientSecret;
+    }
+
     const response = await fetch(`${this.client.config.baseURL}/bookings/${id}/pdf/`, {
-      headers: this.client.config.token ? {
-        'Authorization': `Bearer ${this.client.config.token}`
-      } : this.client.config.apiKey ? {
-        'X-API-Key': this.client.config.apiKey
-      } : {}
+      headers
     });
     if (!response.ok) {
       throw new Error(`Failed to download booking PDF: ${response.statusText}`);
     }
     return response.arrayBuffer();
+  }
+
+  async getCredential(idOrRef: string): Promise<any> {
+    const booking = await this.get(idOrRef);
+    return this.client.request<any>(`/bookings/${booking.id}/credential/`);
   }
 }

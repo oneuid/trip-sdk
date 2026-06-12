@@ -2,6 +2,8 @@ export interface TripExpressConfig {
   baseURL: string;
   apiKey?: string;
   token?: string;
+  clientId?: string;
+  clientSecret?: string;
 }
 
 export interface CartLineInput {
@@ -84,4 +86,26 @@ export interface TicketCredential {
   payload: TicketPayload;
   issuer: string;
   signature: string;
+}
+
+export interface ContactInput {
+  first_name: string;
+  last_name: string;
+  email: string;
+  message: string;
+}
+
+export interface InquiryInput {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone?: string;
+  destination?: string;
+  start_date?: string;
+  end_date?: string;
+  travelers?: number;
+  budget?: string;
+  requirements?: string;
+  currency?: string;
+  metadata?: Record<string, any>;
 }

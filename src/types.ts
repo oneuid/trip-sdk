@@ -41,7 +41,7 @@ export interface Booking {
   user_id: string;
   amount: string;
   currency: string;
-  status: 'draft' | 'paid' | 'confirmed' | 'completed' | 'cancelled';
+  status: 'draft' | 'pending' | 'paid' | 'confirmed' | 'completed' | 'cancelled' | 'no_show' | 'refunded';
   lines: BookingLine[];
   created_at: string;
 }

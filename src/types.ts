@@ -109,3 +109,48 @@ export interface InquiryInput {
   currency?: string;
   metadata?: Record<string, any>;
 }
+
+export interface Option {
+  id: number;
+  experience: number;
+  name: string | Record<string, string>;
+  description?: string | Record<string, string>;
+  conditions?: string | Record<string, string>;
+  capacity: number;
+  minimum: number;
+  unit: 'pax' | 'group' | 'item' | 'night';
+  sku?: string;
+  order: number;
+  is_active: boolean;
+  cutoff_hours: number;
+  slots: string[];
+  metadata?: Record<string, any>;
+  type?: 'seat' | 'bed' | 'cabin' | 'room' | 'table' | 'vehicle' | 'slot' | string;
+  occupancy?: number;
+}
+
+export interface Availability {
+  id: number;
+  option: number;
+  route?: number;
+  schedule?: number;
+  date: string;
+  allotment: number;
+  booked: number;
+  available: number;
+  status: 'open' | 'closed' | 'requested';
+  current_price?: number;
+  slots: string[];
+}
+
+export interface Experience {
+  id: number;
+  title: string | Record<string, string>;
+  slug: string;
+  description?: string | Record<string, string>;
+  currency: string;
+  is_active: boolean;
+  options?: Option[];
+  schedules?: any[];
+  routes?: any[];
+}

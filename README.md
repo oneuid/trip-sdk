@@ -198,6 +198,36 @@ await saveTicketToUIDVault(uid, ticketCredential);
 
 ---
 
+### 5. Embedded Search Widget (White-label Commerce Integration)
+
+You can embed a beautiful, lightweight, and fully interactive travel search widget directly on any partner website (e.g. WordPress, Webflow, static HTML) using a simple `<script>` tag. The widget automatically detects the host domain to apply your organization's theme, routes, and custom branding.
+
+#### 1. Add the Target HTML Container
+Place this element where you want the search widget to render:
+
+```html
+<div id="trip-express-widget"></div>
+```
+
+#### 2. Configure and Include the Script
+Initialize your partner credentials and configurations via `window.TripExpressWidgetConfigs` and load the compiled script:
+
+```html
+<script>
+  window.TripExpressWidgetConfigs = {
+    // Optional: Manually override Organization ID
+    // If omitted, the widget resolves this automatically based on window.location.host
+    organizationId: "123", 
+    themeColor: "#FFB800",       // Primary branding/button hex color
+    baseURL: "https://trip.express", // Production or staging backend API URL
+    searchButtonText: "Tìm Vé Xe" // Text displayed on the primary action button
+  };
+</script>
+<script src="https://cdn.trip.express/sdk/dist/widget.js" async></script>
+```
+
+---
+
 ## Development
 
 Build package distribution assets:

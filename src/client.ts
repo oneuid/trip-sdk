@@ -3,6 +3,7 @@ import { CartClient } from './cart';
 import { BookingClient } from './booking';
 import { PaymentClient } from './payment';
 import { ContactClient } from './contact';
+import { ExperienceClient } from './experience';
 
 export class TripExpress {
   public config: TripExpressConfig;
@@ -10,6 +11,7 @@ export class TripExpress {
   public booking: BookingClient;
   public payment: PaymentClient;
   public contact: ContactClient;
+  public experience: ExperienceClient;
 
   constructor(config: TripExpressConfig) {
     this.config = {
@@ -20,6 +22,7 @@ export class TripExpress {
     this.booking = new BookingClient(this);
     this.payment = new PaymentClient(this);
     this.contact = new ContactClient(this);
+    this.experience = new ExperienceClient(this);
   }
 
   public async request<T>(path: string, options: RequestInit = {}): Promise<T> {

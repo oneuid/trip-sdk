@@ -110,6 +110,17 @@ export interface InquiryInput {
   metadata?: Record<string, any>;
 }
 
+export interface Price {
+  id: number;
+  option_id: number;
+  type: string;
+  amount: number;
+  list?: number | null;
+  currency: string;
+  is_active: boolean;
+  is_primary?: boolean;
+}
+
 export interface Option {
   id: number;
   experience: number;
@@ -124,6 +135,7 @@ export interface Option {
   is_active: boolean;
   cutoff_hours: number;
   slots: string[];
+  prices?: Price[];
   metadata?: Record<string, any>;
   type?: 'seat' | 'bed' | 'cabin' | 'room' | 'table' | 'vehicle' | 'slot' | string;
   occupancy?: number;

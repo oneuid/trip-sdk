@@ -52,14 +52,14 @@ const DEFAULT_LABELS: WidgetLabels = {
   search: 'Search Tickets',
 };
 
-class TripExpressWidget {
+class DingWidget {
   private container: HTMLElement | null = null;
   private config: Required<WidgetConfig> = {
     organizationId: '',
     themeColor: '#FFB800',
     baseURL: 'https://api.trip.express',
     marketplaceURL: 'https://trip.express',
-    targetElementId: 'trip-express-widget',
+    targetElementId: 'ding-widget',
     locale: 'en',
     labels: {},
     onSearch: (data) => this.defaultRedirect(data),
@@ -377,7 +377,9 @@ class TripExpressWidget {
 
 // Auto-initialize when the DOM is ready
 if (document.readyState === 'complete') {
-  new TripExpressWidget();
+  new DingWidget();
 } else {
-  window.addEventListener('DOMContentLoaded', () => new TripExpressWidget());
+  window.addEventListener('DOMContentLoaded', () => new DingWidget());
 }
+
+export { DingWidget };

@@ -14,10 +14,10 @@ export default defineConfig([
   },
   {
     entry: {
-      widget: 'src/widget/index.ts',
+      ding: 'src/widget/index.ts',
     },
     format: ['iife'],
-    globalName: 'TripExpressWidget',
+    globalName: 'DingWidget',
     minify: true,
     splitting: false,
     sourcemap: false,
